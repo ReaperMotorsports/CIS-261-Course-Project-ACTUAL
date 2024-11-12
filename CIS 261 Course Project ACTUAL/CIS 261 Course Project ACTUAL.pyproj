@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>fc6a288e-fa3d-4730-95d8-1639b65fb3f3</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>CIS_261_Course_Project_ACTUAL.py</StartupFile>
+    <StartupFile>CIS_261_Course_Project_Phase1.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CIS_261_Course_Project_ACTUAL.py" />
+    <Compile Include="CIS_261_Course_Project_Phase1.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
