@@ -49,7 +49,7 @@ def getTaxRate():
     return taxRate
 
 def CalcTaxAndNetPay(hours, hourlyRate, taxRate):
-    grossPay = {hours} * {hourlyRate}
+    grossPay = hours * hourlyRate
     incomeTax = grossPay * taxRate
     netPay = grossPay - incomeTax
     return grossPay, incomeTax, netPay
