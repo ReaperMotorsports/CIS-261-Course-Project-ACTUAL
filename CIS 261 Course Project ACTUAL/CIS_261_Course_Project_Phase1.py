@@ -124,10 +124,10 @@ def printInfo(employeeDetails):
  
 def printTotals(empTotals):
     print(f"\nTotal Number of Employees: {empTotals['totEmp']}")
-    print(f"Total Hours: {empTotals['totHours']}")
-    print(f"Total Gross Pay: {empTotals['totGross']}")
-    print(f"Total Tax: {empTotals['totTax']}")
-    print(f"Total Net Pay: {empTotals['totNet']}")
+    print(f"Total Hours: {empTotals['totHours']:,.2f}")
+    print(f"Total Gross Pay: {empTotals['totGross']:,.2f}")
+    print(f"Total Tax: {empTotals['totTax']:,.2f}")
+    print(f"Total Net Pay: {empTotals['totNet']:,.2f}")
     
 if __name__ == "__main__":
 #employeeDetails = []
