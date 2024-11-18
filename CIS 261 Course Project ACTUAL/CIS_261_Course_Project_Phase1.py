@@ -89,6 +89,11 @@ def printInfo(employeeDetails):
         empTotals["totGross"] = totalGrossPay
         empTotals["totTax"] = totalTax
         empTotals["totNet"] = totalNetPay
+        DetailsPrinted = True
+    if (DetailsPrinted):
+        printTotals (empTotals)
+    else:
+        print("No details to print.")
  
 def printTotals(empTotals):
     print(f"\nTotal Number of Employees: {empTotals['totEmp']}")
@@ -98,8 +103,9 @@ def printTotals(empTotals):
     print(f"Total Net Pay: {empTotals['totNet']}")
     
 if __name__ == "__main__":
-   employeeDetails = []
-   empTotals = {}    
+   #employeeDetails = []
+   empTotals = {}
+   DetailsPrinted = False
    while True:
         empName = getEmpName()
         if  (empName.upper() == "END"):
@@ -108,16 +114,10 @@ if __name__ == "__main__":
         hours = getHoursWorked()
         hourlyRate = getHourlyRate()
         taxRate = getTaxRate()
-        empDetail = []
-        empDetail.insert(0, fromDate)
-        empDetail.insert(1, toDate)
-        empDetail.insert(2, empName)
-        empDetail.insert(3, hours)
-        empDetail.insert(4, hourlyRate)
-        empDetail.insert(5, taxRate)
-        employeeDetails.append(empDetail)
+        fromDate = fromDate.strftime("%m-%d-%Y")
+        toDate = toDate.strftime("%m-%d-%Y")
+        empDetails = (fromDate,toDate,empName,hours,hourlyRate,taxRate)
     
-   printInfo(employeeDetails)
-   printTotals(empTotals)
+   printInfo(DetailsPrinted)
         
         
