@@ -23,6 +23,7 @@ def getDatesWorked():
             toDate = datetime.strptime(date_str, "%m-%d-%Y")
         except ValueError:
             print("Incorrect data format. Please try again")
+            print()
         if toDate <= fromDate:
             print("To date must be after from date. Try again.")
             print()
@@ -31,7 +32,7 @@ def getDatesWorked():
     return fromDate, toDate
 
 def getEmpName():
-    empName = input("Enter Employee Name: ")
+    empName = input("Enter Employee Name or END to finish entries: ")
     return empName
 
 def getHoursWorked():
@@ -48,10 +49,14 @@ def getTaxRate():
     return taxRate
 
 def CalcTaxAndNetPay(hours, hourlyRate, taxRate):
-    grossPay = hours * hourlyRate
+    grossPay = {hours} * {hourlyRate}
     incomeTax = grossPay * taxRate
     netPay = grossPay - incomeTax
     return grossPay, incomeTax, netPay
+
+def saveinfo(from_date,to_date,name,hours,hourly_rate,tax_rate):
+    with open(FILENAME, 'a') as EmpInfo:
+        EmpInfo.write(f"{from_date}|{to_date}|{name}|{hours}|{hourly_rate}|{tax_rate}\n")
 
 def printInfo(employeeDetails):
     totalEmployees = 0
@@ -59,8 +64,10 @@ def printInfo(employeeDetails):
     totalGrossPay = 0.00
     totalTax = 0.00
     totalNetPay = 0.00
+    empTotals = {}
     
     with open(FILENAME, "r") as EmpFile:                
+        
         while True:
             runDate = input("Enter star date for report (MM-DD-YYYY) or ALL for complete list in file: ")
             if (runDate.upper() == "ALL"):
@@ -73,10 +80,14 @@ def printInfo(employeeDetails):
                 print()
                 continue
         while True:
-            empDetail = empFile.readline()
+            try:
+                empDetail = EmpFile.readline()
+            except:
+                print("Cannot read file correctly. Try Again.")
             if not empDetail:
+                print("No Information Available.")
                 break
-            empDetail = empDetail.replace("\n", "")
+            empDetail = empDetail.rstrip("\n")
             empList = empDetail.split("|")             
             fromDate = empList[0]
             if (str(runDate).upper() != "ALL"):
@@ -117,24 +128,20 @@ def printTotals(empTotals):
     
 if __name__ == "__main__":
 #employeeDetails = []
-#empTotals = {}
-    with open(FILENAME, "a") as empFile:
-        #empDetailList = []
-        empTotals = {}
-        DetailsPrinted = False
-        while True:
-            empName = getEmpName()
-            if (empName.upper() == "END"):
-                break
-            fromDate, toDate = getDatesWorked()
-            hours = getHoursWorked()
-            hourlyRate = getHourlyRate()
-            taxRate = getTaxRate()
-            fromDate = fromDate.strftime("%m-%d-%Y")
-            toDate = toDate.strftime("%m-%d-%Y")
-            empDetail = fromDate, toDate, empName, hours, hourlyRate, taxRate, "\n"
-            empFile.write(str(empDetail))
+    empTotals = {}
+    DetailsPrinted = False
+    while True:
+        empName = getEmpName()
+        if (empName.upper() == "END"):
+            break
+        fromDate, toDate = getDatesWorked()
+        hours = getHoursWorked()
+        hourlyRate = getHourlyRate()
+        taxRate = getTaxRate()
+        fromDate = fromDate.strftime("%m-%d-%Y")
+        toDate = toDate.strftime("%m-%d-%Y")
+        saveinfo(fromDate,toDate,empName,hours,hourlyRate,taxRate)
         
-        empFile.close()
-        printInfo(DetailsPrinted)
+        
+    printInfo(DetailsPrinted)
         
