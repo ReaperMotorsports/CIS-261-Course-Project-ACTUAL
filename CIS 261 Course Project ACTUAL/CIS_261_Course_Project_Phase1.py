@@ -2,6 +2,11 @@
 #CIS 261
 #Course Project Phase 2
 
+from datetime import datetime
+from sys import breakpointhook
+
+FILENAME = "Employees.txt"
+
 def getDatesWorked():
     fromDate = input("Please enter start date (MM/DD/YYYY): ")
     toDate = input("Please enter end date (MM/DD/YYYY): ")
@@ -37,6 +42,32 @@ def printInfo(employeeDetails):
     totalTax = 0.00
     totalNetPay = 0.00
     
+    with open(FILENAME, "r") as EmpFile:
+        
+        while True:
+            runDate = input("Enter start date for report (MM/DD/YYYY) or ALL for all data in file: ")
+            if (rundate.upper() == "ALL"):
+                break
+            try:
+                rundate = datetime.strptime(rundate, "%m-%d-%Y")
+                break
+            except ValueError:
+                print("Invalid date format. Try again.")
+                print()
+                continue
+            
+        while True:
+            empDetail  = EmpFile.readline()
+            if not empDetail:
+                break
+            empDetail = empDetail.replaace("\n", "")
+            empList = empDetail.split("|")
+            fromDate = empList[0]
+            if (str(runDate).upper() != "ALL"):
+                checkDate = datetime.strptime(fromDate, "%m-%d-%Y")
+                if (checkDate < runDate):
+                    continue
+
     for empList in employeeDetails:
         fromDate = empList[0]
         toDate = empList[1]
