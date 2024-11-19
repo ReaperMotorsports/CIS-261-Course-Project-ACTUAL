@@ -44,7 +44,7 @@ def getHourlyRate():
     return hourlyRate
 
 def getTaxRate():
-    taxRate = float(input("Enter tax rate in whole percentage: "))
+    taxRate = float(input("Enter tax rate in whole percentage decimal i.e. 17% as 0.17: "))
     return taxRate
 
 def CalcTaxAndNetPay(hours, hourlyRate, taxRate):
