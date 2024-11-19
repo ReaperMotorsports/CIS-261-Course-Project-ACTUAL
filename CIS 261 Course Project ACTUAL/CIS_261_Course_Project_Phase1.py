@@ -98,11 +98,19 @@ def printInfo(employeeDetails):
                     continue
             toDate = empList[1]
             empName = empList[2]
-            hours = empList[3]
-            hourlyRate = empList[4]
-            taxRate = empList[5]
+            hours = float(empList[3])
+            hourlyRate = float(empList[4])
+            taxRate = float(empList[5])
             grossPay, incomeTax, netPay = CalcTaxAndNetPay(hours, hourlyRate, taxRate)
-            print(fromDate, toDate, empName, f"{hours:,.2f}", f"{grossPay:,.2f}", f"{taxRate:,.1%}", f"{incomeTax:,.2f}", f"{netPay:,.2f}")
+            print("++++++++++++++++++++++++++++++++")
+            print("Name: ", empName)
+            print("Hours Worked: ", f"{hours:,.2f}")
+            print("Hourly Rate: ", f"{hourlyRate:,.2f}")
+            print("Gross Pay: ", f"{grossPay:,.2f}")
+            print("Tax Rate: ", f"{taxRate:,.1%}")
+            print("Income Tax: ", f"{incomeTax:,.2f}")
+            print("Net Pay: ", f"{netPay:,.2f}")
+            print("++++++++++++++++++++++++++++++++")
             print()
             
             totalEmployees += 1
