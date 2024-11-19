@@ -1,6 +1,6 @@
 #Christopher Morgan
 #CIS 261
-#Course Project Phase 2
+#Course Project Phase 3
 
 from datetime import datetime
 
@@ -67,11 +67,11 @@ def printInfo(employeeDetails):
     
     with open(FILENAME, "r") as EmpFile:                
         while True:
-            runDate = input("Enter star date for report (MM-DD-YYYY) or ALL for complete list in file: ")
+            runDate = input("Enter start date for report (MM-DD-YYYY) or ALL for complete list in file: ")
             if (runDate.upper() == "ALL"):
                 break
             try:
-                runDate = datetime.strptime(runDate, "%m-%D-%Y")
+                runDate = datetime.strptime(runDate, "%m-%d-%Y")
                 break
             except ValueError:
                 print("Incorrect date format. Please try again.")
