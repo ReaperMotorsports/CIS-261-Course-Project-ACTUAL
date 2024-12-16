@@ -207,6 +207,7 @@ if __name__ == "__main__":
     print(" +++ Data Entry +++")
     userRole, username = login()
     DetailsPrinted = False
+    empTotals = {}
     if (userRole.upper() == "NONE"):
         print(username, " is invalid.")
     else:
@@ -223,6 +224,7 @@ if __name__ == "__main__":
                 fromDate = fromDate.strftime("%m-%d-%Y")
                 toDate = toDate.strftime("%m-%d-%Y")
                 saveinfo(fromDate,toDate,empName,hours,hourlyRate,taxRate)
+                EmpFile.close()
         
         EmpFile.close()
     printInfo(DetailsPrinted)      
