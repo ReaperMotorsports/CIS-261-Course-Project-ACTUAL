@@ -37,7 +37,7 @@ def getUserRole():
             userRole = input("Enter Operator Role (Admin or User): ")
             
 def printuserInfo():
-    userFile = open ("User.txt", "r")
+    userFile = open ("Users.txt", "r")
     while True:
         userDetail = userFile.readline()
         if not userDetail:
