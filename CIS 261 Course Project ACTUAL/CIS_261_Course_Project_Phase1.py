@@ -206,12 +206,10 @@ if __name__ == "__main__":
     print()
     print(" +++ Data Entry +++")
     userRole, username = login()
-    empTotals = {}
     DetailsPrinted = False
     if (userRole.upper() == "NONE"):
         print(username, " is invalid.")
     else:
-        
         if (userRole.upper() == "ADMIN"):
             EmpFile = open("Employee.txt",  "a+")
             while True:
