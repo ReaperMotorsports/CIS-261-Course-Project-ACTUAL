@@ -50,7 +50,7 @@ def printuserInfo():
         print("Username: ", username, "Password: ", userPassword, "Role: ", userRole)
 
 def login():
-    userFile = open("User.txt", "r")
+    userFile = open("Users.txt", "r")
     userList = []
     username = input("Enter Username: ")
     userPassword = input("Enter Password: ")
@@ -62,7 +62,7 @@ def login():
         userDetail = userDetail.replace("\n", "")
         
         userList = userDetail.split("|")
-        if username == userList[0] and userPassword == userList[1]:
+        if username == userList[0]:
             userRole = userList[2]
             return userRole, username
         return userRole, username
@@ -208,23 +208,21 @@ if __name__ == "__main__":
     userRole, username = login()
     DetailsPrinted = False
     empTotals = {}
-    if (userRole.upper() == "NONE"):
-        print(username, " is invalid.")
-    else:
-        if (userRole.upper() == "ADMIN"):
-            EmpFile = open("Employee.txt",  "a+")
-            while True:
-                empName = getEmpName()
-                if (empName.upper() == "END"):
-                    break
-                fromDate, toDate = getDatesWorked()
-                hours = getHoursWorked()
-                hourlyRate = getHourlyRate()
-                taxRate = getTaxRate()
-                fromDate = fromDate.strftime("%m-%d-%Y")
-                toDate = toDate.strftime("%m-%d-%Y")
-                saveinfo(fromDate,toDate,empName,hours,hourlyRate,taxRate)
-                EmpFile.close()
+
+    if (userRole.upper() == "ADMIN"):
+        EmpFile = open("Employee.txt",  "a+")
+        while True:
+            empName = getEmpName()
+            if (empName.upper() == "END"):
+                break
+            fromDate, toDate = getDatesWorked()
+            hours = getHoursWorked()
+            hourlyRate = getHourlyRate()
+            taxRate = getTaxRate()
+            fromDate = fromDate.strftime("%m-%d-%Y")
+            toDate = toDate.strftime("%m-%d-%Y")
+            saveinfo(fromDate,toDate,empName,hours,hourlyRate,taxRate)
+            EmpFile.close()
         
         EmpFile.close()
     printInfo(DetailsPrinted)      
