@@ -37,7 +37,7 @@ def getUserRole():
             userRole = input("Enter Operator Role (Admin or User): ")
             
 def printuserInfo():
-    userFile = open ("Users.txt", "r")
+    userFile = open ("Users.txt","r")
     while True:
         userDetail = userFile.readline()
         if not userDetail:
@@ -50,24 +50,22 @@ def printuserInfo():
         print("Username: ", username, "Password: ", userPassword, "Role: ", userRole)
 
 def login():
-    userFile = open("Users.txt", "r")
+    userFile = open("Users.txt","r")
     userList = []
     username = input("Enter Username: ")
-    userPassword = input("Enter Password: ")
     userRole = "None"
     while True:
         userDetail = userFile.readline()
         if not userDetail:
-            return userRole, username, userPassword
+            return userRole, username
         userDetail = userDetail.replace("\n", "")
-        
         userList = userDetail.split("|")
         if username == userList[0]:
             userRole = userList[2]
             return userRole, username
         return userRole, username
     
-FILENAME = "Employees.txt"
+
 
 def getEmpName():
     empName = input("Enter Employee Name or END to finish entries: ")
@@ -116,30 +114,24 @@ def CalcTaxAndNetPay(hours, hourlyRate, taxRate):
     netPay = grossPay - incomeTax
     return grossPay, incomeTax, netPay
 
-def saveinfo(from_date,to_date,name,hours,hourly_rate,tax_rate):
-    with open(FILENAME, 'a') as EmpInfo:
-        EmpInfo.write(f"{from_date}|{to_date}|{name}|{hours}|{hourly_rate}|{tax_rate}\n")
-
 def printInfo(employeeDetails):
     totalEmployees = 0
     totalHours = 0.00
     totalGrossPay = 0.00
     totalTax = 0.00
     totalNetPay = 0.00
-    empTotals = {}
-    
-    with open(FILENAME, "r") as EmpFile:                
-        while True:
-            runDate = input("Enter start date for report (MM-DD-YYYY) or ALL for complete list in file: ")
-            if (runDate.upper() == "ALL"):
-                break
-            try:
-                runDate = datetime.strptime(runDate, "%m-%d-%Y")
-                break
-            except ValueError:
-                print("Incorrect date format. Please try again.")
-                print()
-                continue
+    EmpFile = open("Employee.txt", "r")                
+    while True:
+        runDate = input("Enter start date for report (MM-DD-YYYY) or ALL for complete list in file: ")
+        if (runDate.upper() == "ALL"):
+            break
+        try:
+            runDate = datetime.strptime(runDate, "%m-%d-%Y")
+            break
+        except ValueError:
+            print("Incorrect date format. Please try again.")
+            print()
+            continue
         
         while True:
             try:
@@ -151,7 +143,7 @@ def printInfo(employeeDetails):
                 print("No Information Available.")
                 break
             
-            empDetail = empDetail.rstrip("\n")
+            empDetail = empDetail.replace("\n")
             empList = empDetail.split("|")             
             
             fromDate = empList[0]
