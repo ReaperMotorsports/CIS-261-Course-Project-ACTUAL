@@ -219,9 +219,7 @@ if __name__ == "__main__":
             hours = getHoursWorked()
             hourlyRate = getHourlyRate()
             taxRate = getTaxRate()
-            fromDate = fromDate.strftime("%m-%d-%Y")
-            toDate = toDate.strftime("%m-%d-%Y")
-            saveinfo(fromDate,toDate,empName,hours,hourlyRate,taxRate)
+            EmpDetail = fromDate + "|" + toDate + "|" + empName + "|" + str(hourlyRate) + "|" + str(taxRate) + "\n"
             EmpFile.close()
         
         EmpFile.close()
