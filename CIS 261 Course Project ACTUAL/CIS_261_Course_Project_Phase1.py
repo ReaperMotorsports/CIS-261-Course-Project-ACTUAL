@@ -6,7 +6,7 @@ from datetime import datetime
 
 def createUser():
     print('Create username, password, and roles')
-    userFile = open("User.txt", "a+")
+    userFile = open("Users.txt", "a+")
     while True:
         username = getUserName()
         if (username.upper() == "End"):
